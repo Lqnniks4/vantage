@@ -568,6 +568,7 @@ button.btn-primary:hover i {
     </style>
 </head>
 <body>
+    <script>document.body.style.overflow='auto';</script>
     <header>
         <div class="vanilla1" style="max-width: 1180px;">
             <div class="vanilla2" style="padding: 1.1rem 0.5rem;">
@@ -608,7 +609,7 @@ button.btn-primary:hover i {
                 </a>
                 <nav class="vanilla4">
                     <a href="https://vantagegroupconsulting.com" class="vanilla5">Home</a>
-                    <a href="/prodotti/" class="vanilla5">Prodotti</a>
+                    <a href="/prodotti/" class="vanilla5">Servizi</a>
                     <a href="/" class="vanilla5 vanilla21">Contattaci</a>
                     <a href="/privacy/" class="vanilla5">Privacy</a>
                 </nav>
@@ -623,7 +624,7 @@ button.btn-primary:hover i {
             <i class="fas fa-times"></i>
         </button>
         <a href="https://vantagegroupconsulting.com" class="vanilla5">Home</a>
-        <a href="/prodotti/" class="vanilla5">Prodotti</a>
+        <a href="/prodotti/" class="vanilla5">Servizi</a>
         <a href="/" class="vanilla5 vanilla21">Contattaci</a>
         <a href="/privacy/" class="vanilla5">Privacy</a>
     </nav>
@@ -635,27 +636,29 @@ button.btn-primary:hover i {
                         <h1>Contattaci</h1>
                         <p>Entra in contatto con il nostro team per informazioni, collaborazioni o supporto. Puoi prenotare una chiamata gratuita con noi!</p>
                     </div>
-                    <form id="contactForm" class="vanilla10">
+                    <form id="contactForm" class="vanilla10" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="apikey" value="9fbdd216-c8ce-497d-9a4f-725a8943d7b9">
+                        <input type="hidden" name="access_key" value="9fbdd216-c8ce-497d-9a4f-725a8943d7b9">
+                        <input type="hidden" name="subject" value="Nuova richiesta dal sito Vantage">
+                        <input type="hidden" name="from_name" value="Vantage Group Consulting">
+                        <input type="hidden" name="redirect" value="/contact/?success">
                         <div class="form-group">
                             <label for="name" class="form-label">Nome Completo</label>
-                            <input type="text" id="name" name="name" class="form-input" required>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Name" required>
                         </div>
                         <div class="form-group">
                             <label for="email" class="form-label">Indirizzo Email</label>
-                            <input type="email" id="email" name="email" class="form-input" required>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="Email" required>
                         </div>
                         <div class="form-group">
                             <label for="phone" class="form-label">Numero di Cellulare</label>
-                            <input type="text" id="phone" name="phone" class="form-input" required>
+                            <input type="text" id="phone" name="phone" class="form-input" placeholder="Phone Number" required>
                         </div>
                         <div class="form-group">
                             <label for="message" class="form-label">Il Tuo Messaggio</label>
-                            <textarea id="message" name="message" class="form-textarea" required></textarea>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="Message" required></textarea>
                         </div>
-                        <button type="submit" class="btn-primary">
-                            <span>Invia Email</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
+                        <button type="submit" class="btn-primary"><span>Invia</span></button>
                     </form>
                 </div>
             </div>
@@ -701,32 +704,6 @@ button.btn-primary:hover i {
                 header.style.background = 'rgba(255, 255, 255, 0.95)';
                 header.style.boxShadow = 'none';
             }
-        });
-
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            const formObject = {};
-            formData.forEach((value, key) => {
-                formObject[key] = value;
-            });
-            fetch('https://formsubmit.co/ajax/contact@vantagegroupconsulting.com', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(formObject)
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('Messaggio inviato con successo! Ti risponderemo presto.');
-                this.reset();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Si è verificato un errore nell\'invio del messaggio. Riprova più tardi.');
-            });
         });
     </script>
     <script>
